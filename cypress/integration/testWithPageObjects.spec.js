@@ -21,11 +21,7 @@ describe('Test with Page Objects', () => {
     const password = 'Control123.'
     const favMovie = 'Batman Trilogy'
     const subject = 'Qa Automation Course'
-<<<<<<< HEAD
-    const text = 'This is a\nmultiline\ntext\nto be used\nas\nan\nEXAMPLE.'
-=======
     const message = 'This is a\nmultiline\ntext\nto be used\nas\nan\nEXAMPLE.'
->>>>>>> 32f2cc7 (Migrating from Local Machine)
 
     beforeEach('Open Application', () => {
         cy.visit('/')
