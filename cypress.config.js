@@ -2,7 +2,7 @@ const { defineConfig } = require ("cypress");
 
 module.exports = defineConfig({
   e2e: {
-    baseUrl: "http://192.168.0.16:4200",
+    baseUrl: "http://127.0.0.1:4200",
     excludeSpecPattern: ['**/1-getting-started', '**/2-advanced-examples'],
     specPattern: 'cypress/integration/**/*.{js,jsx,ts,tsx}',
     viewportHeight: 1080,

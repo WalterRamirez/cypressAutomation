@@ -21,7 +21,11 @@ describe('Test with Page Objects', () => {
     const password = 'Control123.'
     const favMovie = 'Batman Trilogy'
     const subject = 'Qa Automation Course'
+<<<<<<< HEAD
     const text = 'This is a\nmultiline\ntext\nto be used\nas\nan\nEXAMPLE.'
+=======
+    const message = 'This is a\nmultiline\ntext\nto be used\nas\nan\nEXAMPLE.'
+>>>>>>> 32f2cc7 (Migrating from Local Machine)
 
     beforeEach('Open Application', () => {
         cy.visit('/')
@@ -119,7 +123,7 @@ describe('Test with Page Objects', () => {
     it('Validate Modal & Overlays => Window', () => {
         navigateTo.modalOverlaysWindowPage()
         // Scenarios
-        onWindowPage.validateWindowForm(subject, text)
+        onWindowPage.validateWindowForm(subject, message)
         onWindowPage.validateWindoFormWithTemplate()
         onWindowPage.validateWindowWithBackdrop()
         onWindowPage.validateWindowWithoutBackdrop()
@@ -128,7 +132,11 @@ describe('Test with Page Objects', () => {
     it.only('Validate Modal & Overlays => Popover', () => {
         navigateTo.modalOverlaysPopoverPage()
         // Scenarios
-
+        onPopoverPage.validatePopoverPosition()
+        onPopoverPage.validateSimplePopovers()
+        onPopoverPage.validateTemplatePopovers(email, subject, message)
+        onPopoverPage.validateComponentPopovers(email, subject, message)
+        onPopoverPage.validateEventDeboucing()
     })
 
     it('Validate Modal & Overlays => Toastr', () => {
