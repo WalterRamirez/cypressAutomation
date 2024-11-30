@@ -7,6 +7,7 @@ import { onAccordionPage } from "../support/page_objects/layoutAccordionPage"
 import { onDialogPage } from "../support/page_objects/modal&OverlaysDialog"
 import { onWindowPage } from "../support/page_objects/modal&OverlaysWindow"
 import { onPopoverPage } from "../support/page_objects/modal&OverlaysPopover"
+import { onTooltipPage } from "../support/page_objects/modal&OverlaysTooltip"
 
 describe('Test with Page Objects', () => {
     // Local Test Constants
@@ -80,7 +81,6 @@ describe('Test with Page Objects', () => {
         onAccordionPage.walkSingleToggle()
         onAccordionPage.navigateToggleWithExternalController([0, 3, 1, 2, 1, 3, 2, 1])
         onAccordionPage.navigateSingleToggle([1, 3, 1, 2, 1, 3, 2, 1])
-
     })
     
     it('Validate Forms => Form Layouts', () => {
@@ -125,7 +125,7 @@ describe('Test with Page Objects', () => {
         onWindowPage.validateWindowWithoutBackdrop()
     })
 
-    it.only('Validate Modal & Overlays => Popover', () => {
+    it('Validate Modal & Overlays => Popover', () => {
         navigateTo.modalOverlaysPopoverPage()
         // Scenarios
         onPopoverPage.validatePopoverPosition()
@@ -144,7 +144,9 @@ describe('Test with Page Objects', () => {
     it('Validate Modal & Overlays => Tooltip', () => {
         navigateTo.modalOverlaysTooltipPage()
         // Scenarios
-
+        onTooltipPage.validateTooltipWithIcon()
+        onTooltipPage.validateTooltipPlacements()
+        onTooltipPage.validateColoredTooltips()
     })
 
     it('Validate Extra Components => Calendar', () => {
