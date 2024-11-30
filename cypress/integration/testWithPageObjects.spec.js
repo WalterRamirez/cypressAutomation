@@ -8,6 +8,7 @@ import { onDialogPage } from "../support/page_objects/modal&OverlaysDialog"
 import { onWindowPage } from "../support/page_objects/modal&OverlaysWindow"
 import { onPopoverPage } from "../support/page_objects/modal&OverlaysPopover"
 import { onTooltipPage } from "../support/page_objects/modal&OverlaysTooltip"
+import { onCalendarPage } from "../support/page_objects/extraComponentsCalendar"
 
 describe('Test with Page Objects', () => {
     // Local Test Constants
@@ -152,7 +153,12 @@ describe('Test with Page Objects', () => {
     it('Validate Extra Components => Calendar', () => {
         navigateTo.extraComponentsCalendarPage()
         // Scenarios
-
+        onCalendarPage.selectCommonDatepickerDateFromToday(10000)
+        onCalendarPage.selectCommonDatepickerSpecificDate(15,1,1900)
+        onCalendarPage.selectDatepickerWithRangeFromToday(-100, 100)
+        onCalendarPage.selectDatepickerSpecificDates(16,12,1986,25,11,2154)
+        onCalendarPage.selectDatepickerDateFromTodayWithLimits(-100)
+        onCalendarPage.selectCommonDatepickerSpecificDateWithLimits(27, 11, 2024)
     })
 
     it('Validate Tables & Data => Smart Table', () => {
