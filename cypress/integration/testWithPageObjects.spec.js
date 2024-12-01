@@ -9,6 +9,7 @@ import { onWindowPage } from "../support/page_objects/modal&OverlaysWindow"
 import { onPopoverPage } from "../support/page_objects/modal&OverlaysPopover"
 import { onTooltipPage } from "../support/page_objects/modal&OverlaysTooltip"
 import { onCalendarPage } from "../support/page_objects/extraComponentsCalendar"
+import { onToastrPage, ToastrPage } from "../support/page_objects/modal&OverlaysToastr"
 
 describe('Test with Page Objects', () => {
     // Local Test Constants
@@ -139,7 +140,15 @@ describe('Test with Page Objects', () => {
     it('Validate Modal & Overlays => Toastr', () => {
         navigateTo.modalOverlaysToastrPage()
         // Scenarios
-
+        // Bug on "Prevent arising of duplicate toast"
+        onToastrPage.validateToastrConfiguration(ToastrPage.Position.TOP_RIGHT, favMovie, subject, 2000, ToastrPage.Type.PRIMARY, false, false, true)
+        onToastrPage.validateToastrConfiguration(ToastrPage.Position.TOP_LEFT, favMovie, subject, 1000, ToastrPage.Type.SUCCESS, false, false, false)
+        onToastrPage.validateToastrConfiguration(ToastrPage.Position.TOP_START, favMovie, subject, 0, ToastrPage.Type.INFO, true, false, true)
+        onToastrPage.validateToastrConfiguration(ToastrPage.Position.TOP_END, favMovie, subject, 2000, ToastrPage.Type.WARNING, false, false, true)
+        onToastrPage.validateToastrConfiguration(ToastrPage.Position.BOTTOM_RIGHT, favMovie, subject, 2000, ToastrPage.Type.DANGER, false, false, true)
+        onToastrPage.validateToastrConfiguration(ToastrPage.Position.BOTTOM_LEFT, favMovie, subject, 2000, ToastrPage.Type.PRIMARY, false, false, true)
+        onToastrPage.validateToastrConfiguration(ToastrPage.Position.BOTTOM_START, favMovie, subject, 2000, ToastrPage.Type.SUCCESS, false, false, true)
+        onToastrPage.validateToastrConfiguration(ToastrPage.Position.BOTTOM_END, favMovie, subject, 2000, ToastrPage.Type.INFO, false, false, true)
     })
 
     it('Validate Modal & Overlays => Tooltip', () => {
