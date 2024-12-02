@@ -10,6 +10,7 @@ import { onPopoverPage } from "../support/page_objects/modal&OverlaysPopover"
 import { onTooltipPage } from "../support/page_objects/modal&OverlaysTooltip"
 import { onCalendarPage } from "../support/page_objects/extraComponentsCalendar"
 import { onToastrPage, ToastrPage } from "../support/page_objects/modal&OverlaysToastr"
+import { onTreeGridPage } from "../support/page_objects/tables&DataTreeGrid"
 
 describe('Test with Page Objects', () => {
     // Local Test Constants
@@ -25,6 +26,38 @@ describe('Test with Page Objects', () => {
     const favMovie = 'Batman Trilogy'
     const subject = 'Qa Automation Course'
     const message = 'This is a\nmultiline\ntext\nto be used\nas\nan\nEXAMPLE.'
+    const projects = Object.freeze({
+        NAME: "Projects",
+        SIZE: "1.8 MB",
+        KIND: "dir",
+        ITEMS: 5,
+        CONTENT: [
+            {NAME: "project-1.doc",  SIZE: "240 KB", KIND: "doc",  ITEMS: "-"},
+            {NAME: "project-2.doc",  SIZE: "290 KB", KIND: "doc",  ITEMS: "-"},
+            {NAME: "project-3",      SIZE: "466 KB", KIND: "txt",  ITEMS: "-"},
+            {NAME: "project-4.docx", SIZE: "900 KB", KIND: "docx", ITEMS: "-"}
+        ]
+    })
+    const reports = Object.freeze({
+        NAME: "Reports",
+        SIZE: "400 KB",
+        KIND: "dir",
+        ITEMS: 2,
+        CONTENT: [
+            {NAME: "Report 1", SIZE: "100 KB", KIND: "doc", ITEMS: "-"},
+            {NAME: "Report 2", SIZE: "300 KB", KIND: "doc", ITEMS: "-"}
+        ]
+    })
+    const other = Object.freeze({
+        NAME: "Other",
+        SIZE: "109 MB",
+        KIND: "dir",
+        ITEMS: 2,
+        CONTENT: [
+            {NAME: "backup.bkp",      SIZE: "107 MB", KIND: "bkp", ITEMS: "-"},
+            {NAME: "secret-note.txt", SIZE: "2 MB",   KIND: "txt", ITEMS: "-"}
+        ]
+    })
 
     beforeEach('Open Application', () => {
         cy.visit('/')
@@ -179,10 +212,16 @@ describe('Test with Page Objects', () => {
         onSmartTablePage.deleteRecord(SmartTable.ID, id)
     })
 
-    it('Validate Tables & Data => Tree Grid', () => {
+    it.only('Validate Tables & Data => Tree Grid', () => {
         navigateTo.tablesAndDataTreeGridPage()
         // Scenarios
-
+        onTreeGridPage.expandComponentAndValidate(projects)
+        onTreeGridPage.expandComponentAndValidate(reports)
+        onTreeGridPage.expandComponentAndValidate(other)
+        onTreeGridPage.validateSearch("txt", [projects, reports, other])
+        onTreeGridPage.validateSearch("doc", [projects, reports, other])
+        onTreeGridPage.validateSearch("report", [projects, reports, other])
+        onTreeGridPage.validateSearch("empty", [projects, reports, other])
     })
 
     it('Validate Auth => Login', () => {
