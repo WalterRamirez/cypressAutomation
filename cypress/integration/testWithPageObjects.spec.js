@@ -212,7 +212,7 @@ describe('Test with Page Objects', () => {
         onSmartTablePage.deleteRecord(SmartTable.ID, id)
     })
 
-    it.only('Validate Tables & Data => Tree Grid', () => {
+    it('Validate Tables & Data => Tree Grid', () => {
         navigateTo.tablesAndDataTreeGridPage()
         // Scenarios
         onTreeGridPage.expandComponentAndValidate(projects)
