@@ -11,6 +11,7 @@ import { onTooltipPage } from "../support/page_objects/modal&OverlaysTooltip"
 import { onCalendarPage } from "../support/page_objects/extraComponentsCalendar"
 import { onToastrPage, ToastrPage } from "../support/page_objects/modal&OverlaysToastr"
 import { onTreeGridPage } from "../support/page_objects/tables&DataTreeGrid"
+import { onRegisterPage } from "../support/page_objects/authRegisterPage"
 
 describe('Test with Page Objects', () => {
     // Local Test Constants
@@ -60,7 +61,7 @@ describe('Test with Page Objects', () => {
     })
 
     beforeEach('Open Application', () => {
-        cy.visit('/')
+        cy.openHomePage()
     })
 
     it('Verify navigations across the pages', () => {
@@ -224,27 +225,9 @@ describe('Test with Page Objects', () => {
         onTreeGridPage.validateSearch("empty", [projects, reports, other])
     })
 
-    it('Validate Auth => Login', () => {
-        navigateTo.authLoginPage()
-        // Scenarios
-
-    })
-
-    it('Validate Auth => Register', () => {
+    it('Validate Auth', () => {
         navigateTo.authRegisterPage()
-        // Scenarios
-
-    })
-
-    it('Validate Auth => Request Password', () => {
-        navigateTo.authRequestPasswordPage()
-        // Scenarios
-
-    })
-
-    it('Validate Auth => Reset Password', () => {
-        navigateTo.authResetPasswordPage()
-        // Scenarios
-        
+        // Scenarios 
+        onRegisterPage.validateRegisterUser(fullName, email, password)
     })
 })
