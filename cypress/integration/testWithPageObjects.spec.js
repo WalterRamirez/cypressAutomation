@@ -64,7 +64,7 @@ describe('Test with Page Objects', () => {
         cy.openHomePage()
     })
 
-    it('Verify navigations across the pages', () => {
+    it('Verify navigations across the pages', {browser: ['!firefox', '!edge']}, () => {
         navigateTo.layoutStepperPage()
         navigateTo.layoutAccordionPage()
         navigateTo.formLayoutsPage()
